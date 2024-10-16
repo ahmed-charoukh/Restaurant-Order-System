@@ -1,15 +1,14 @@
 class MenuItem:
-    def init(self, name, price):
+    def __init__(self, name, price):
         self.name = name
         self.price = price
 
-    def str(self):
+    def __str__(self):
         return f"{self.name}: ${self.price}"
 
 
-
 class Order:
-    def init(self, order_id):
+    def __init__(self, order_id):
         self.order_id = order_id
         self.items = []
         self.status = "New"
@@ -26,15 +25,14 @@ class Order:
     def update_status(self, new_status):
         self.status = new_status
 
-    def str(self):
+    def __str__(self):
         items_list = "\n".join([str(item) for item in self.items])
         total = self.calculate_total()
         return f"Order ID: {self.order_id}\nStatus: {self.status}\nItems:\n{items_list}\nTotal: ${total}"
 
 
-
 class Restaurant:
-    def init(self):
+    def __init__(self):
         self.menu = []
         self.orders = []
 
@@ -69,31 +67,23 @@ class Restaurant:
 
 restaurant = Restaurant()
 
-
 restaurant.add_menu_item("Burger", 5.99)
 restaurant.add_menu_item("Pizza", 8.99)
 restaurant.add_menu_item("Salad", 4.99)
 
-
 restaurant.display_menu()
-
 
 order1 = restaurant.create_order()
 order1.add_item(MenuItem("Burger", 5.99))
 order1.add_item(MenuItem("Salad", 4.99))
 
-
 restaurant.display_orders()
-
 
 order1.update_status("In Progress")
 
-
 restaurant.display_orders()
-
 
 order2 = restaurant.create_order()
 order2.add_item(MenuItem("Pizza", 8.99))
-
 
 restaurant.display_orders()
